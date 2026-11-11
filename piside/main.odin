@@ -27,7 +27,7 @@ Asteroid_Size :: enum {
     SMALL
 }
 
-SCREEN_SIZE :: [2]i32{1200, 1200}
+SCREEN_SIZE :: [2]i32{800, 800}
 
 BASE_RADIUS :: 38
 ASTEROID_COUNT :: 12
@@ -43,7 +43,6 @@ SCALES := [Asteroid_Size]f32{
 asteroid_tex: raylib.Texture
 
 main :: proc() {
-    fmt.println("bang")
     raylib.InitWindow(SCREEN_SIZE.x, SCREEN_SIZE.y, "1300 Exhibit Game")
     raylib.SetTargetFPS(60)
 
