@@ -27,7 +27,7 @@ Asteroid_Size :: enum {
     SMALL
 }
 
-SCREEN_SIZE :: [2]i32{800, 800}
+SCREEN_SIZE :: [2]i32{600, 600}
 
 BASE_RADIUS :: 38
 ASTEROID_COUNT :: 12
