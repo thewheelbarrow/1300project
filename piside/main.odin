@@ -107,14 +107,15 @@ draw_asteroid :: proc(asteroid: Asteroid) {
     scale := SCALES[asteroid.size]
     real_size := tex_size * scale
 
-    raylib.DrawTexturePro(
-        asteroid_tex,
-        {0, 0, tex_size.x, tex_size.y},
-        {asteroid.x, asteroid.y, real_size.x, real_size.y},
-        real_size / 2,
-        asteroid.rotation,
-        raylib.WHITE
-    )
+    raylib.DrawCircle(i32(asteroid.x), i32(asteroid.y), real_size.x / 2, raylib.RED)
+    // raylib.DrawTexturePro(
+    //     asteroid_tex,
+    //     {0, 0, tex_size.x, tex_size.y},
+    //     {asteroid.x, asteroid.y, real_size.x, real_size.y},
+    //     real_size / 2,
+    //     asteroid.rotation,
+    //     raylib.WHITE
+    // )
 }
 
 generate_asteroids :: proc() -> Asteroid_Map {
