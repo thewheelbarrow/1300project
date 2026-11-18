@@ -27,7 +27,7 @@ Asteroid_Size :: enum {
     SMALL
 }
 
-SCREEN_SIZE :: [2]i32{600, 600}
+SCREEN_SIZE :: [2]i32{800, 800}
 
 BASE_RADIUS :: 38
 ASTEROID_COUNT :: 12
@@ -107,15 +107,15 @@ draw_asteroid :: proc(asteroid: Asteroid) {
     scale := SCALES[asteroid.size]
     real_size := tex_size * scale
 
-    raylib.DrawCircle(i32(asteroid.x), i32(asteroid.y), real_size.x / 2, raylib.RED)
-    // raylib.DrawTexturePro(
-    //     asteroid_tex,
-    //     {0, 0, tex_size.x, tex_size.y},
-    //     {asteroid.x, asteroid.y, real_size.x, real_size.y},
-    //     real_size / 2,
-    //     asteroid.rotation,
-    //     raylib.WHITE
-    // )
+    // raylib.DrawCircle(i32(asteroid.x), i32(asteroid.y), real_size.x / 2, raylib.RED)
+    raylib.DrawTexturePro(
+        asteroid_tex,
+        {0, 0, tex_size.x, tex_size.y},
+        {asteroid.x, asteroid.y, real_size.x, real_size.y},
+        real_size / 2,
+        asteroid.rotation,
+        raylib.WHITE
+    )
 }
 
 generate_asteroids :: proc() -> Asteroid_Map {
@@ -129,7 +129,7 @@ generate_asteroids :: proc() -> Asteroid_Map {
 
 generate_asteroid :: proc() -> Asteroid {
     return {
-        pos = {50, 50} + 1100 * {rand.float32(), rand.float32()},
+        pos = cast([2]f32)SCREEN_SIZE * {rand.float32(), rand.float32()},
         vel = 3 * ({rand.float32(), rand.float32()} - .5),
         rotation = 360 * rand.float32(),
         angular_vel = 2 * rand.float32(),
