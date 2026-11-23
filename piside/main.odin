@@ -103,7 +103,16 @@ main :: proc() {
     }
     defer controller_destroy(&controller)
 
+    respawn_frame := 0
+
+    frame := 0
     for !raylib.WindowShouldClose() {
+        frame += 1
+
+        if frame == respawn_frame {
+            asteroids = generate_asteroids()
+        }
+
         controller_shot := controller_poll(&controller)
         aim := cast([2]f32)SCREEN_SIZE / 2 + controller.pos
 
@@ -129,6 +138,10 @@ main :: proc() {
         }
         if raylib.IsMouseButtonPressed(.LEFT) {
             shoot(&asteroids, raylib.GetMousePosition())
+        }
+
+        if handle_map.len(asteroids) == 0 {
+            respawn_frame = frame + 20
         }
 
         draw_crosshair(aim)
