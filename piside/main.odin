@@ -108,9 +108,11 @@ main :: proc() {
     frame := 0
     for !raylib.WindowShouldClose() {
         frame += 1
+        fmt.println(frame, handle_map.len(asteroids))
 
         if frame == respawn_frame {
             asteroids = generate_asteroids()
+            fmt.println("trying to respawn asteroids")
         }
 
         controller_shot := controller_poll(&controller)
@@ -142,6 +144,7 @@ main :: proc() {
 
         if handle_map.len(asteroids) == 0 {
             respawn_frame = frame + 20
+            fmt.println("all asteroids dead")
         }
 
         draw_crosshair(aim)
